@@ -70,6 +70,11 @@ func main() {
 		if threeSumResult == 0 {
 			threeSumResult = threeSum(i)
 		}
+
+		if twoSumResult != 0 && threeSumResult != 0 {
+			os.Exit(0)
+		}
+
 		index[i] = struct{}{}
 	}
 }
