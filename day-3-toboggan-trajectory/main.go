@@ -33,7 +33,7 @@ func countTrees(rightCoordinates []int, downCoordinates []int) {
 	for scanner.Scan() {
 		row := scanner.Text()
 		for i, right := range rightCoordinates {
-			if rune(row[right * rowCounter / downCoordinates[i] % len(row)]) == '#' && rowCounter % downCoordinates[i] == 0 {
+			if rune(row[right*rowCounter/downCoordinates[i]%len(row)]) == '#' && rowCounter%downCoordinates[i] == 0 {
 				treesCounter[i] += 1
 			}
 		}
