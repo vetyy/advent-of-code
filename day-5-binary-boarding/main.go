@@ -4,9 +4,7 @@ import (
     "bufio"
     "fmt"
     "log"
-    "math"
     "os"
-    "sort"
 )
 
 func main() {
@@ -16,48 +14,38 @@ func main() {
     }
     defer file.Close()
 
-    maxSeatID := 0.0
-    var seats []float64
+    maxSeatID := 0
+    mySeatID := 0
 
     scanner := bufio.NewScanner(file)
     for scanner.Scan() {
         line := scanner.Text()
-        x := 63.
-        row := 127.
+
+        row := 0
         for _, ch := range line[:7] {
-            row = row / 2
-            if ch == 'F' {
-                x -= row / 2
-            } else {
-                x += row / 2
+            row *= 2
+            if ch == 'B' {
+                row += 1
             }
         }
 
-        y := 3.
-        column := 7.
+        column := 0
         for _, ch := range line[7:] {
-            column = column / 2
-            if ch == 'L' {
-                y -= column / 2
-            } else {
-                y += column / 2
+            column *= 2
+            if ch == 'R' {
+                column += 1
+
             }
         }
 
-        seatID := math.Ceil(x)*8 + math.Ceil(y)
+        seatID := row*8 + column
         if maxSeatID < seatID {
             maxSeatID = seatID
         }
-        seats = append(seats, seatID)
+
+        mySeatID ^= seatID
     }
 
-    fmt.Println("Biggest seat ID is: ", maxSeatID)
-
-    sort.Float64s(seats)
-    for i, seatID := range seats {
-        if seatID+1 != seats[i+1] {
-            fmt.Println("Your seat ID is: ", seatID+1)
-            break
-        }
-    }
+    fmt.Println("Biggest seat ID is:", maxSeatID)
+    fmt.Println("My seat ID is:", mySeatID-1)
 }
