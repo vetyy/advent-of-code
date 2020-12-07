@@ -18,12 +18,10 @@ func main() {
 
     colorIndex := map[string]map[string]int{}
     for _, line := range strings.Split(strings.TrimSpace(string(inputData)), "\n") {
-        lineParts := strings.Split(strings.Trim(line, "."), "contain")
+        lineParts := strings.Split(strings.Trim(line, "."), " bags contain ")
 
-        colorParts := strings.Split(lineParts[0], " ")
-        bagColorKey := fmt.Sprintf("%s %s", colorParts[0], colorParts[1])
+        bagColorKey := lineParts[0]
         colorIndex[bagColorKey] = map[string]int{}
-
         for _, color := range strings.Split(lineParts[1], ",") {
             colorParts := strings.Split(strings.TrimSpace(color), " ")
             colorKey := fmt.Sprintf("%s %s", colorParts[1], colorParts[2])
