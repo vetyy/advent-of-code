@@ -18,7 +18,7 @@ func main() {
 
     colorIndex := map[string]map[string]int{}
     for _, line := range strings.Split(strings.TrimSpace(string(inputData)), "\n") {
-        lineParts := strings.Split(strings.Trim(line, "."), " bags contain ")
+        lineParts := strings.Split(line, " bags contain ")
 
         bagColorKey := lineParts[0]
         colorIndex[bagColorKey] = map[string]int{}
