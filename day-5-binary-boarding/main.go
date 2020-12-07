@@ -5,6 +5,7 @@ import (
     "fmt"
     "log"
     "os"
+    "sort"
 )
 
 func main() {
@@ -14,8 +15,8 @@ func main() {
     }
     defer file.Close()
 
-    maxSeatID := 0
-    mySeatID := 0
+    var maxSeatID int
+    var seatIDs []int
 
     scanner := bufio.NewScanner(file)
     for scanner.Scan() {
@@ -43,9 +44,16 @@ func main() {
             maxSeatID = seatID
         }
 
-        mySeatID ^= seatID
+        seatIDs = append(seatIDs, seatID)
     }
 
     fmt.Println("Biggest seat ID is:", maxSeatID)
-    fmt.Println("My seat ID is:", mySeatID-1)
+
+    sort.Ints(seatIDs)
+    for i := range seatIDs {
+        if seatIDs[i+1] != seatIDs[i]+1 {
+            fmt.Println("My seat ID is:", seatIDs[i]+1)
+            break
+        }
+    }
 }
