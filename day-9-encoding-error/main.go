@@ -19,18 +19,16 @@ func main() {
 
     var i, invalidNumber int
     var index []int
-    slidingIndex := make([]int, PreambleSize)
 
     scanner := bufio.NewScanner(file)
     for scanner.Scan() {
         value, _ := strconv.Atoi(scanner.Text())
-        if i >= PreambleSize && !findInvalidNumber(slidingIndex, value) {
+        if i >= PreambleSize && !findInvalidNumber(index[i-PreambleSize:i], value) {
             invalidNumber = value
             fmt.Println("Part 1:", value)
             break
         }
         i += 1
-        slidingIndex[i%PreambleSize] = value
         index = append(index, value)
     }
 
