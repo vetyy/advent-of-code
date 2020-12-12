@@ -39,7 +39,17 @@ func part1(instructions []*Instruction) {
     directions := []rune{'E', 'S', 'W', 'N'}
     var ewPosition, nsPosition, currentDirection int
     for _, inst := range instructions {
-        switch inst.Action {
+        action := inst.Action
+        switch action {
+        case 'L':
+            currentDirection = (currentDirection - inst.Value/90 + 4) % 4
+        case 'R':
+            currentDirection = (currentDirection + inst.Value/90) % 4
+        case 'F':
+            action = directions[currentDirection]
+        }
+       
+        switch action {
         case 'N':
             nsPosition += inst.Value
         case 'S':
@@ -48,21 +58,6 @@ func part1(instructions []*Instruction) {
             ewPosition += inst.Value
         case 'W':
             ewPosition -= inst.Value
-        case 'L':
-            currentDirection = (currentDirection - inst.Value/90 + 4) % 4
-        case 'R':
-            currentDirection = (currentDirection + inst.Value/90) % 4
-        case 'F':
-            switch directions[currentDirection] {
-            case 'E':
-                ewPosition += inst.Value
-            case 'W':
-                ewPosition -= inst.Value
-            case 'N':
-                nsPosition += inst.Value
-            case 'S':
-                nsPosition -= inst.Value
-            }
         }
     }
     fmt.Println("Part 1:", Abs(ewPosition)+Abs(nsPosition))
