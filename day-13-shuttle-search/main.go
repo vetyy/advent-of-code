@@ -38,15 +38,15 @@ func main() {
     fmt.Println(busIDs[smallestBusID] * smallestDiff)
 
     var increment int
-    min := busIDs[0]
+    currentIncrement := busIDs[0]
     for i, id := range busIDs[1:] {
         for {
-            increment += min
+            increment += currentIncrement
             if (increment+gaps[i+1])%id == 0 {
                 break
             }
         }
-        min *= id
+        currentIncrement *= id
     }
     fmt.Println(increment)
 }
