@@ -49,10 +49,9 @@ func Peek(stack []string) string {
 func evaluatePart1(characters []string) (result int) {
     var stack []string
     for _, ch := range characters {
-        switch ch {
-        case "+", "*":
+        if ch == "+" || ch == "*" {
             stack = append(stack, ch)
-        default:
+        } else {
             value, _ := strconv.Atoi(ch)
             switch Peek(stack) {
             case "+":
