@@ -18,8 +18,8 @@ func Solve(data []string, eval func(characters []string) int) (out int) {
     for _, line := range data {
         line = strings.ReplaceAll(line, " ", "")
         var stack []string
-        for i := 0; i < len(line); i++ {
-            if line[i] == ')' {
+        for _, ch := range line {
+            if ch == ')' {
                 for j := len(stack) - 1; j >= 0; j-- {
                     if stack[j] == "(" {
                         tmpStack := stack[j:]
@@ -29,7 +29,7 @@ func Solve(data []string, eval func(characters []string) int) (out int) {
                     }
                 }
             } else {
-                stack = append(stack, string(line[i]))
+                stack = append(stack, string(ch))
             }
         }
         out += eval(stack)
