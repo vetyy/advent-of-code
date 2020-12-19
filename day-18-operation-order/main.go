@@ -7,8 +7,6 @@ import (
     "strings"
 )
 
-type EvalFunc func(characters []string) int
-
 func main() {
     inputData, _ := ioutil.ReadFile("input")
     data := strings.Split(strings.TrimSpace(string(inputData)), "\n")
@@ -16,7 +14,7 @@ func main() {
     fmt.Println("Part 2:", Solve(data, evaluatePart2))
 }
 
-func Solve(data []string, eval EvalFunc) (out int) {
+func Solve(data []string, eval func(characters []string) int) (out int) {
     for _, line := range data {
         line = strings.ReplaceAll(line, " ", "")
         var stack []string
