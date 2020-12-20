@@ -41,11 +41,10 @@ func main() {
             for edge := range edges {
                 if edges2[edge] {
                     edgeCount += 1
-                    if edgeCount == 2 {
-                        counter += 1
-                        break
-                    }
                 }
+            }
+            if edgeCount == 2 {
+                counter += 1
             }
         }
         if counter == 2 {
