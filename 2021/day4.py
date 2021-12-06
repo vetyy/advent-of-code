@@ -1,5 +1,5 @@
-data = [i.strip() for i in open('input')]
-numbers = [int(i) for i in data[0].split(',')]
+data = [i.strip() for i in open("input")]
+numbers = [int(i) for i in data[0].split(",")]
 
 bingo_boards = []
 bingo_board = []
@@ -38,10 +38,11 @@ def run(n_wins):
 
             if len(wins) == n_wins:
                 s = 0
-                for row in board[:len(board)//2]:
+                for row in board[: len(board) // 2]:
                     s += sum(row)
                 print(n * s)
                 return
+
 
 run(1)
 run(len(bingo_boards))

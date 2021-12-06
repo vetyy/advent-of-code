@@ -1,4 +1,4 @@
-data = [i for i in open('input')]
+data = [i for i in open("input")]
 
 
 def run(part):
@@ -24,6 +24,7 @@ def run(part):
                 depth -= int(b)
 
     print(pos * depth)
+
 
 run(1)
 run(2)
