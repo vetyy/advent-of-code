@@ -1,4 +1,4 @@
-data = [list(map(int, i.strip())) for i in open('input')]
+data = [list(map(int, i.strip())) for i in open("input")]
 
 directions = [
     [0, 1],
@@ -17,7 +17,7 @@ while True:
     flashed = set()
     for i in range(len(data)):
         for j in range(len(data[0])):
-            search = [(i,j)]
+            search = [(i, j)]
             while search:
                 x, y = search.pop()
                 if (x, y) in flashed:
@@ -28,7 +28,7 @@ while True:
                     continue
 
                 data[x][y] = 0
-                flashed.add((x,y))
+                flashed.add((x, y))
                 if steps < 100:
                     flashes += 1
 
